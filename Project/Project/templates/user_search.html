@@ -1,0 +1,29 @@
+{% extends "base_user.html" %}
+{% block title %}Search Results{% endblock %}
+{% block body %}
+
+<div class="container">
+  <h2>Search Results for "{{ searched }}"</h2>
+
+  {% if products %}
+  <ul class="list-group">
+    {% for product in products %}
+    <li class="list-group-item d-flex justify-content-between">
+      <div >
+        <a href="/home/{{ user.u_id }}#product_{{ product.p_id }}">
+      <h6 class="my-0">{{ product.name }}</h6></a>
+        <small class="text-muted mr-2">Section: {{ product.sec.name }}</small>
+        <small class="text-muted mr-2">Expiry Date: {{ product.ed }}</small>
+        <small class="text-muted mr-2">Mnf Date: {{ product.md }}</small>
+        <small class="text-muted">Quantity: {{ product.quantity }}</small>
+      </div>
+      <span class="text-muted">Rate: {{ product.rate }} {{ product.units }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No results found.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

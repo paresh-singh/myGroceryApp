@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+  <style>
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus .dropdown-menu {
+      display: block;
+    }
+    
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+      background-color: rgba(0, 0, 0, 0.87);
+      color: rgb(5, 168, 5);
+    }
+    .form-control.search-input {
+      width: 400px; /* Set the width as per your preference */
+      max-width: 100%; /* Ensure the search box doesn't overflow on small screens */
+    }
+    .btn2{
+      color: black;
+      text-emphasis-style: bold;
+      background-color: rgba(177, 118, 7, 0.901);
+      font-size: 15px;
+    }
+    .btn3{
+      padding: 2px;
+      background-color: rgba(33, 191, 109, 0.89);
+      font-size: 20px;
+    }
+    
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+    
+      .table th,
+      .table td {
+        padding: 12px;
+        border-bottom: 1px solid #B5924F;
+      }
+    
+      .table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+    
+      .table tr:hover {
+        background-color: #B5924F;
+      }
+    
+      .table td a {
+        background-color: #c9f851;
+            color: black;
+            border: none;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+      }
+    
+      .table td a:hover {
+        background-color: #f7df08;
+      }
+      .table tr td:first-child {
+        border-left: 2px solid #B5924F;
+      }
+      .table tr td:last-child {
+        border-right: 2px solid #B5924F;
+      }
+      .table tr:last-child {
+        border-bottom: 4px solid #B5924F;
+      }
+    
+  </style>
+  <title>{% block title %} {% endblock %}</title>
+</head>
+<body style="background-color: #bae8e8;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/home/{{ user.u_id }}">Home</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" >
+            Categories
+          </a>
+          <ul class="dropdown-menu">
+            {% for sec in sections %}
+            <li><a class="dropdown-item" href="/home/{{ user.u_id }}#section_{{ sec.s_id }}">{{sec.name}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      </ul>
+      <div class="mx-auto">
+        <form class="form-inline my-2 my-lg-0"  method="POST" action="/search/{{ user.u_id }}">
+          <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" name="search" >
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>  
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="flex-direction: row;">
+        <li class="nav-item mr-2">
+          <a class="nav-link active" href="/">Logout</a>
+        </li>
+        <li class="nav-item ml-2">
+          <a class="nav-link active" href="/cart/{{ user.u_id }}">Cart</a>
+        </li>
+      </ul>
+    
+  </div>
+</nav>
+
+{%block body%}{%endblock%}
+</body>
+</html>

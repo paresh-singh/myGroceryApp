@@ -1,0 +1,17 @@
+{% extends "base_admin.html" %}
+{% block title %} Section {% endblock %}
+{% block body %}
+<div class="container mt-4" style="background-color:#B5924F;">
+  <h1>Update Section</h1>
+
+  <form action="/update_section/{{s1.s_id}}" method="POST" class="mt-4 p-4 bg-light border rounded" >
+    <div class="form-group">
+      <label for="s_name">Updated name:</label>
+      <input type="text" id="s_name" name="s_name" value="{{s1.name}}" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn1 btn-primary">Update</button>
+  </form>
+  <br><br>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS for dropdown menu */
+    .dropdown-menu {
+      display: none;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown:focus {
+      outline: none;
+    }
+
+    /* Custom CSS for navbar */
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link:focus {
+      background-color: rgba(0, 0, 0, 0.87);
+      color: rgb(5, 168, 5);
+    }
+
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+      background-color: rgba(0, 0, 0, 0.87);
+      color: rgb(5, 168, 5);
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src=" {{ url_for('static' , filename = 'shop.png') }} " width="60" height="60">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">here</span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" aria-expanded="false">
+              Categories
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#fruits-vegetables">Fruits and vegetables</a></li>
+              <li><a class="dropdown-item" href="#food-grains">Food grains, Oil and Masala</a></li>
+              <li><a class="dropdown-item" href="#bakery-dairy">Bakery and Dairy</a></li>
+              <li><a class="dropdown-item" href="#beverages">Beverages</a></li>
+              <li><a class="dropdown-item" href="#snacks">Snacks</a></li>
+            </ul>
+          </li>
+        </ul>
+
+          <form class="d-flex mx-auto my-2 my-lg-0" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+              style="width: 400px;">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  <div id="fruits-vegetables" style="height: 500px; background-color: lightgray;">
+    Fruits and vegetables section
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+  </div>
+  <div id="food-grains" style="height: 500px; background-color: lightblue;">
+    Food grains, Oil and Masala section
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="bakery-dairy" style="height: 500px; background-color: lightgray;">
+    Bakery and diary section
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+  </div>
+  <div id="beverages" style="height: 500px; background-color: lightblue;">
+    Beverages section
+    <div class="card" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+ </body>
+</html>

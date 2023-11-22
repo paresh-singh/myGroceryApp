@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <title>Checkout</title>
+</head>
+<body>
+<div class="container" >
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %} 
+{% for category, message in messages %} 
+{% if category =='error' %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{ message }}
+</div>
+
+{% elif category =='success' %}
+<div class="alert alert-success alter-dismissable fade show" role="alert">
+	{{ message }}
+</div>
+
+{% endif %} {% endfor %} {% endif %} {% endwith %}
+  <div class="py-5 text-center">
+    <h2>Checkout form</h2>
+  </div>
+
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Product </th>
+            <th>Section </th>
+            <th>Rate (Rs)</th>
+            <th>Quantity present</th>
+            <th>Quantity</th>
+            <th>Total (Rs)</th>
+            <th>Remove from cart</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if product|length != 0 %}
+          {% for item in user.cart %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.sec.name }}</td>
+            <td>{{ item.product.rate }}  {{ item.product.units }}</td>
+            <td>{{ item.product.quantity }}</td>
+            <td>
+              <form action="/update_cart/{{ user.u_id }}/{{ item.product.p_id }}" method="POST" class="add-to-cart-form">
+                <div class="counter">
+                  <input type="hidden" name="p_id" value="{{ item.product.p_id }}">
+                  <input type="number" class="add-quantity-input" name="quantity" placeholder="0" min="0" max="{{ item.product.quantity }}" size="2" value="{{ item.quantity }}">
+                  <input type="submit" class="add-quantity-btn" value="Update">
+                </div>
+              </form>
+            </td>
+            <td>{{ item.product.rate * item.quantity }}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Actions">
+                <a href="/remove_from_cart/{{ user.u_id }}/{{ item.product.p_id }}" class="btn btn-danger">Remove</a>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td style="text-align: center; font-style:Bold ;"> Total</td>
+            <td>Rs. {{ total }}</td>
+            <td> </td>
+          </tr>
+        </tbody>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+  <br>
+  <div class="buttons " style=" display:flex; justify-content: center;">
+    <button class="btn2 section-btn ml-2"  onclick="window.location.href='/home/{{ user.u_id }}'">Home page</button>
+  </div>
+  <br><br>
+
+  <div class="col-md-12">
+    <h4 class="mb-3">Billing address</h4>
+    <form class="needs-validation" novalidate>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label for="firstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="{{ user.name }}" required>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <label for="lastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastName" >
+        </div>
+
+        <div class="col-12">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" placeholder="{{ user.email }}" required>
+          <div class="invalid-feedback">
+            Please enter a valid email address for shipping updates.
+          </div>
+        </div>
+
+        <div class="col-12">
+          <label for="address" class="form-label">Address</label>
+          <input type="text" class="form-control" id="address" placeholder="IIT Madras" required>
+          <div class="invalid-feedback">
+            Please enter your shipping address.
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <label for="country" class="form-label">Country</label>
+          <input type="text" class="form-control" id="country" required>
+        </div>
+
+        <div class="col-md-4">
+          <label for="state" class="form-label">State</label>
+          <input type="text" class="form-control" id="state" required>
+        </div>
+
+        <div class="col-md-3">
+          <label for="zip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="zip" required>
+        </div>
+      </div>
+        <br><br>
+        
+    </form>
+
+  </div>
+  <div class="buttons " style=" display:flex; justify-content: center;">
+    <button class="btn2 section-btn ml-2"  onclick="window.location.href='/checkout/{{ user.u_id }}'">Checkout</button>
+  </div>
+</div>
+
+<br><br>
+</body>
+</html>

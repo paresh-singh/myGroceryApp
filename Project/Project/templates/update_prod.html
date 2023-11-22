@@ -1,0 +1,65 @@
+{% extends "base_admin.html" %}
+{% block title %} Update Products {% endblock %}
+{% block body %}
+<div class="container mt-4" style="background-color: #B5924F" >
+    <h1>Update Product</h1>
+    <div class="form-container">
+        <form action="/update_product/{{p1.p_id}}" method="POST" class="mt-4 p-4 bg-light border rounded">
+            
+            <div class="form-row">
+                <label for="p_name">Product name:</label>
+                <input type="text" id="p_name" name="p_name" placeholder="{{ p1.name }}" class="form-control" required>
+            </div>
+        
+            <div class="form-row">
+                <label for="man_date">Manufacturing date:</label>
+                <input type="date" id="man_date" name="man_date" value="{{ p1.md }}" class="form-control" >
+            </div>
+        
+            <div class="form-row">
+                <label for="exp_date">Expiration date:</label>
+                <input type="date" id="exp_date" name="exp_date" value="{{ p1.ed }}" class="form-control" >
+            </div>
+            
+            <div class="form-row">
+                <label for="quantity">Quantity:</label>
+                <input type="int" id="quantity" name="quantity" placeholder="{{ p1.quantity }}"  class="form-control" required>
+            </div>
+
+            <div class="form-row">
+                <label for="rate">Rate:</label>
+                <input type="int" id="rate" name="rate" placeholder="{{ p1.rate }}"  class="form-control" required>
+            </div>
+            
+            <div class="form-row">
+                <label for="units">Units:</label>
+                <select name="units" id="units" value="{{ p1.units }}"  class="form-control">
+                    <option value="Rs/kg">Kilograms (Rs/kg)</option>
+                    <option value="Rs/g">Grams (Rs/g)</option>
+                    <option value="Rs/mg">Milligrams (Rs/mg)</option>
+                    <option value="Rs/L">Liters (Rs/L)</option>
+                    <option value="Rs/ml">Milliliters (Rs/ml)</option>
+                    <option value="Rs/pack">Packs</option>
+                    <option value="Rs/bottle">Bottles</option>
+                </select> 
+            </div>
+
+            <div class="form-row">
+                <label for="section">Select Section:</label>
+                <select name="sname" id="section" value="{{ p1.key }}" class="form-control">
+                    {% for sec in section %}
+                    <option value="{{ sec.s_id }} "> {{ sec.name }}</option>
+                    {% endfor %}
+                </select> 
+            </div>
+
+            <div class="form-row">
+                <input type="submit" value="Add" class="btn1">
+            </div>
+        </form>
+    </div>
+    <br>
+</div>
+<br>
+{% endblock %}
+

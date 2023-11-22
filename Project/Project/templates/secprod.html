@@ -1,0 +1,46 @@
+{% extends "base_admin.html" %}
+{% block title %} Products {% endblock %}
+{% block body %}
+{% if p1|length == 0 %}
+<h1 style="display: flex;justify-content: center;">No Products present in {{ s1.name }}</h1>
+{% else %}
+  
+    <h1 style="display: flex;justify-content: center;">Products present in {{ s1.name }}</h1>
+    <div class="table">
+    <table style="display:flex;">
+      <tr>
+        <th>ID</th>
+        <th class="px-3">Name</th>
+        <th class="px-3">Mnf date</th>
+        <th class="px-3">Exp date</th>
+        <th class="px-3">Quantity</th>
+        <th class="px-3">Rate</th>
+        <th class="px-3">Units</th>
+        <th class="pr-3">Actions</th>
+      </tr>
+      {% for prod in p1 %}
+        <tr>
+          <td><a type="button" href="/sections#product_{{ prod.p_id }}">{{ prod.p_id }}</a></td>
+          <td class="px-3">{{ prod.name}}</td>
+          <td class="px-3">{{ prod.md}}</td>
+          <td class="px-3">{{ prod.ed}}</td>
+          <td class="px-3">{{ prod.quantity}}</td>
+          <td class="px-3">{{ prod.rate}}</td>
+          <td class="px-3">{{ prod.units}}</td>
+          <td class="pr-3">
+            <a type="button" href="/update_product/{{ prod.p_id }}">Update</a>
+            <a type="button" href="/delete_product/{{ prod.p_id }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endif %}
+
+<div class="buttons " style=" display:flex; justify-content: center;">
+  <button class="btn2 addProduct-btn mr-2"  onclick="window.location.href='/addProduct'">Add product</button>
+  <br>
+  <button class="btn2 section-btn ml-2"  onclick="window.location.href='/sections'">Go back</button>
+</div>
+<br><br>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base_admin.html" %}
+{% block title %} Search results {% endblock %}
+{% block body %}
+
+<div class="container">
+  <h2>Search Results for "{{ searched }}"</h2>
+
+  {% if products %}
+  <ul class="list-group">
+    {% for product in products %}
+    <li class="list-group-item d-flex justify-content-between">
+      <div>
+        <h6 class="my-0"><a href="/sections#product_{{ product.p_id }}">{{ product.name }}</a></h6>
+        <small class="text-muted">Section: {{ product.sec.name }}</small>
+        <small class="text-muted">Expiry Date: {{ product.ed }}</small>
+      </div>
+      <span class="text-muted">Rate: {{ product.rate }} {{ product.units }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No results found.</p>
+  {% endif %}
+</div>
+
+{% endblock %}
+

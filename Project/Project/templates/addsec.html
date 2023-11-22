@@ -1,0 +1,18 @@
+{% extends "base_admin.html" %}
+{% block title %} Add section {% endblock %}
+{% block body %}
+<div class="container mt-4" style="background-color:#B5924F;">
+    <h1>Add a New Section</h1>
+    <form action="/addSection" method="POST" class="mt-4 p-4 bg-light border rounded">
+        <div class="form-group">
+          <label for="s_name">Section name:</label>
+          <input type="text" id="s_name" name="name_there" class="form-control" required>
+        </div>
+        <button type="submit" class="btn1 btn-primary">Add</button>
+    </form>
+    <br>
+</div>
+
+{% endblock %}
+
+

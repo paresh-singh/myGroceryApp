@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <style>/* Add your custom CSS styles here */
+      body {
+        background-color: #f8f9fa;
+      }
+      
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        background-color: #f2f2f2; /* Set the background color here */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      label {
+        font-weight: bold;
+        color: #555;
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-shadow: none;
+      }
+      
+      .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+      
+      button[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      
+      
+      </style>
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body style="background-color: #b8b6b3;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/admin">Admin</a>
+        <a class="navbar-brand" href="/">Login</a>
+        <a class="navbar-brand" href="/sign">Sign-up</a>
+    </nav>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %} 
+    {% for category, message in messages %} 
+    {% if category =='error' %}
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{ message }}
+      </div>
+    {% elif category =='success' %}
+      <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{ message }}
+      </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    {%block body%} {%endblock%}
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous" />
+  <style>
+    .navbar-nav .nav-item {
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+
+    .form-control.search-input {
+      width: 400px;
+    }
+
+    .navbar .form-inline {
+      flex-direction: row;
+      margin-left: 35%;
+    }
+
+    .btn1 {
+      background-color: #c9f851;
+      color: black;
+      border: none;
+      margin-top: 10px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn1:hover {
+      background-color: #f7df08;
+    }
+
+    body {
+      background-color: #EFC882;
+    }
+    .btn2{
+      color: black;
+      text-emphasis-style: bold;
+      background-color: orange;
+      font-size: 15px;
+    }
+    .btn3{
+      padding: 2px;
+      background-color: rgba(33, 191, 109, 0.89);
+      font-size: 20px;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }
+  
+    .table th,
+    .table td {
+      padding: 12px;
+      border-bottom: 1px solid #B5924F;
+    }
+  
+    .table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+  
+    .table tr:hover {
+      background-color: #B5924F;
+    }
+  
+    .table td a {
+      background-color: #c9f851;
+          color: black;
+          border: none;
+          margin-top: 10px;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+    }
+  
+    .table td a:hover {
+      background-color: #f7df08;
+    }
+    .table tr td:first-child {
+      border-left: 4px solid #B5924F;
+    }
+    .table tr td:last-child {
+      border-right: 4px solid #B5924F;
+    }
+    .table tr:last-child {
+      border-bottom: 4px solid #B5924F;
+    }
+  </style>
+
+  <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/sections">Home</a> 
+    <div class="collapse navbar-collapse">
+      <form class="form-inline " method="POST" action="/searchAdmin">
+        <input class="form-control mr-sm-2 search-input" type="search" placeholder="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link" href="/">Logout</a>
+      </div>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %} 
+    {% for category, message in messages %} 
+    {% if category =='error' %}
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{ message }}
+      </div>
+    {% elif category =='success' %}
+      <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{ message }}
+      </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+ 
+  {%block body%}{%endblock%}
+</body>
+
+</html>
